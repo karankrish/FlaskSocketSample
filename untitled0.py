@@ -17,14 +17,13 @@ print(' [*] Waiting for logs. To exit press CTRL+C')
 def callback(ch, method, properties, body):
     print(" [x] %r" % body)
     app = flaskSocket.create_app()
-    return app
+    app.run(app, host="192.168.100.20",port=6002)
+     
 
 channel.basic_consume(
     queue=queue_name, on_message_callback=callback, auto_ack=True)
 
-channel.start_consuming()
+#channel.start_consuming()
 
 
-
-if __name__ == '__main__':
-    app.run(host="192.168.100.20",port=6002)
+    
