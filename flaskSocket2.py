@@ -4,7 +4,7 @@ from flask_cors import CORS
 import json
 app = Flask(__name__)
 app.config["DEBUG"] = True
-app.config['SECRET_KEY'] = 'mysecret'
+#app.config['SECRET_KEY'] = 'mysecret'
 socketio = SocketIO(app)
 socketio.init_app(app, cors_allowed_origins="*")
 
@@ -13,15 +13,14 @@ def dataCountuniversity(key):
     data = {"message": key}
     handle_my_custom_event(data)
     return str(data).replace("\'", "\"")
-msg="asd"
+
 @socketio.on('message')
-def handleMessage():
+def handleMessage(asd):
     print('Message: ' )
-    data = json.loads({"message": "asd"})
+    data ={"message": asd}
     send(str(data).replace("\'", "\""), broadcast=True)
 
 
-j=json.loads('{"data":"ass"}')
 '''
 @socketio.on('res')
 def handle_my_custom_event(j):
