@@ -20,7 +20,11 @@ def some_function(p):
     print("===============")
     socketio.emit('testEmit', p)
 
-
+@socketio.on('test')
+def handleMessage(test):
+    print(test)
+    
+    
 @socketio.on('connection')
 def handleMessage(asd):
     print(asd)
